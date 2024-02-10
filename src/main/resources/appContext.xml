@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:aop = "http://www.springframework.org/schema/aop"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:util="http://www.springframework.org/schema/util" 
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+					        http://www.springframework.org/schema/beans/spring-beans.xsd
+					        http://www.springframework.org/schema/context
+					        http://www.springframework.org/schema/context/spring-context.xsd
+					        http://www.springframework.org/schema/util 
+					        http://www.springframework.org/schema/util/spring-util.xsd
+					        http://www.springframework.org/schema/aop 
+					   		http://www.springframework.org/schema/aop/spring-aop.xsd"
+>
+	<context:property-placeholder location="app.properties"/> 
+
+    <bean id="CoordsForPointBean" class="ru.pslm.Coords">
+        <property name="x" value="${point.x}"/>
+       	<property name="y" value="${point.y}"/>
+    </bean>
+    
+    <bean id="PointBean" class="ru.pslm.Point" scope="singleton">
+        <property name="color"  value="${point.color}"/>
+       	<property name="coords" ref="CoordsForPointBean"/>
+    </bean>
+
+    <bean id="CoordsForCircleBean" class="ru.pslm.Coords">
+        <property name="x" value="${circle.x}"/>
+       	<property name="y" value="${circle.y}"/>
+    </bean>
+    
+    <bean id="CircleBean" class="ru.pslm.Circle" scope="singleton">
+       	<constructor-arg name="color"  value="${circle.color}"/>
+       	<constructor-arg name="center" ref="CoordsForCircleBean"/>
+       	<constructor-arg name="radius" value="${circle.radius}"/>
+    </bean>
+    
+	<bean id="SceneBean" class="ru.pslm.Scene"
+    	scope="singleton"
+    	factory-method="getInstance"
+    >
+	    <property name="objects">
+			<list>
+				<ref bean="PointBean"/>
+				<ref bean="CircleBean"/>
+			</list>
+		</property>
+    </bean>
+</beans>
