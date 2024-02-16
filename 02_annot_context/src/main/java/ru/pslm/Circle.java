@@ -1,5 +1,8 @@
 package ru.pslm;
 
+import org.springframework.context.annotation.*;
+import org.springframework.beans.factory.annotation.*;
+
 @Component
 // <bean id="CircleBean" class="ru.pslm.Circle" scope="singleton">
 //     <constructor-arg name="color"  value="${circle.color}"/>

@@ -1,8 +1,12 @@
 package ru.pslm;
 
 import java.util.List;
+import org.springframework.context.annotation.*;
+import org.springframework.stereotype.*;
+import org.springframework.beans.factory.annotation.*;
 
-@Configuration
+
+@Component
 // <bean id="SceneBean" class="ru.pslm.Scene"
 // scope="singleton"
 // factory-method="getInstance"
