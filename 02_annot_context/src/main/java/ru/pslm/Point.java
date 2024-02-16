@@ -1,6 +1,11 @@
 package ru.pslm;
 
+import org.springframework.context.annotation.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+
 @Component
+@Scope("prototype")
 // <bean id="PointBean" class="ru.pslm.Point" scope="singleton">
 //   <property name="color"  value="${point.color}"/>
 //   <property name="coords" ref="CoordsForPointBean"/>
