@@ -1,23 +1,17 @@
 package ru.pslm;
 
-import org.springframework.context.annotation.*;
+import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.*;
 
 @Component
-// <bean id="CircleBean" class="ru.pslm.Circle" scope="singleton">
-//     <constructor-arg name="color"  value="${circle.color}"/>
-//     <constructor-arg name="center" ref="CoordsForCircleBean"/>
-//     <constructor-arg name="radius" value="${circle.radius}"/>
-// </bean>
 public class Circle extends Shape {
 
-    @Autowired
     private Coords center;
 
-    @Autowired
     private int radius;
 
-    public Circle(String color, Coords center, int radius) {
+    @Autowired
+    public Circle(@Value("${circle.color}") String color, Coords center, @Value("${circle.radius}") int radius) {
         super(color);
         this.center = center;
         this.radius = radius;
@@ -32,12 +26,14 @@ public class Circle extends Shape {
     public int getX() {
         return getCenter().getX();
     }
+    @Value("${circle.x}")
     public void setX(int y) {
         getCenter().setX(y);
     }
     public int getY() {
         return getCenter().getY();
     }
+    @Value("${circle.y}")
     public void setY(int y) {
         getCenter().setY(y);
     }
