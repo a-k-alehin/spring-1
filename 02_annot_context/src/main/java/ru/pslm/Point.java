@@ -6,18 +6,14 @@ import org.springframework.stereotype.*;
 
 @Component
 @Scope("prototype")
-// <bean id="PointBean" class="ru.pslm.Point" scope="singleton">
-//   <property name="color"  value="${point.color}"/>
-//   <property name="coords" ref="CoordsForPointBean"/>
-// </bean>
 public class Point extends Shape {
 
-    @Bean
     private Coords coords;
 
     public Point() {};
 
-    public Point(String color, Coords coords) {
+    @Autowired
+    public Point(@Value("${point.color}") String color, Coords coords) {
         super(color);
         this.coords = coords;
     }
@@ -31,12 +27,14 @@ public class Point extends Shape {
     public int getX() {
         return getCoords().getX();
     }
+    @Value("${point.x}")
     public void setX(int y) {
         getCoords().setX(y);
     }
     public int getY() {
         return getCoords().getY();
     }
+    @Value("${point.y}")
     public void setY(int y) {
         getCoords().setY(y);
     }
