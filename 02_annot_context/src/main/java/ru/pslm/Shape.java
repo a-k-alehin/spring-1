@@ -1,5 +1,7 @@
 package ru.pslm;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public abstract class Shape {
 
     private String color;
@@ -13,6 +15,7 @@ public abstract class Shape {
     public String getColor() {
         return color;
     }
+    @Value("default")
     public void setColor(String color) {
         this.color = color;
     }

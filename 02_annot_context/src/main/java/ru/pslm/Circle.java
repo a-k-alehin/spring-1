@@ -2,16 +2,21 @@ package ru.pslm;
 
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.context.annotation.Scope;
 
 @Component
+@Scope("prototype")
 public class Circle extends Shape {
 
     private Coords center;
 
+    //@Value("${circle.radius}")
     private int radius;
 
-    @Autowired
-    public Circle(@Value("${circle.color}") String color, Coords center, @Value("${circle.radius}") int radius) {
+    public Circle(
+            @Value("${circle.color}") String color, 
+            Coords center,  
+            @Value("#{point.x}") int radius) {
         super(color);
         this.center = center;
         this.radius = radius;
@@ -40,6 +45,7 @@ public class Circle extends Shape {
     public int getRadius() {
         return radius;
     }
+    //@Value("${circle.radius}")
     public void setRadius(int radius) {
         this.radius = radius;
     }
