@@ -6,34 +6,21 @@ import org.springframework.beans.factory.annotation.*;
 
 
 @Component
-// <bean id="SceneBean" class="ru.pslm.Scene"
-// scope="singleton"
-// factory-method="getInstance"
-// >
-//   <property name="objects">
-//     <list>
-//       <ref bean="PointBean"/>
-//       <ref bean="CircleBean"/>
-//     </list>
-//   </property>
-// </bean>
 public class Scene {
 
     private List<Shape> objects;
 
-    private Scene() {}
-
-    private static Scene instance = null;
-
-    public static synchronized Scene getInstance() {
-        if (instance == null)
-            instance = new Scene();
-        return instance;
+    // сам ищет все бины типа Shape
+    // можно даже не указывать @Autowired, если нет конструктора без параметров
+    public Scene(List<Shape> objects) {
+        super();
+        this.objects = objects;
     }
 
     public List<Shape> getObjects() {
         return objects;
     }
+
     public void setObjects(List<Shape> objects) {
         this.objects = objects;
     }

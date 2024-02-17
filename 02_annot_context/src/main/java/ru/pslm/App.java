@@ -14,10 +14,6 @@ public class App {
             new AnnotationConfigApplicationContext(App.class);
 
         Scene scene = context.getBean(Scene.class);
-        List<Shape> objects = new ArrayList<Shape>();
-        objects.add(context.getBean(Point.class));
-        objects.add(context.getBean(Circle.class));
-        scene.setObjects(objects);
         scene.draw();
     }
 

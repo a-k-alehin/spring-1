@@ -5,14 +5,10 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 @Component
-@Scope("prototype")
 public class Point extends Shape {
 
     private Coords coords;
 
-    public Point() {};
-
-    @Autowired
     public Point(@Value("${point.color}") String color, Coords coords) {
         super(color);
         this.coords = coords;
@@ -27,7 +23,7 @@ public class Point extends Shape {
     public int getX() {
         return getCoords().getX();
     }
-    @Value("${point.x}")
+    @Value("#{T(java.lang.Math).random()*100}")
     public void setX(int y) {
         getCoords().setX(y);
     }
