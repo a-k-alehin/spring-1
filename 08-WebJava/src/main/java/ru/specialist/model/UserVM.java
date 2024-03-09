@@ -26,14 +26,6 @@ public class UserVM {
 
     @Value("#{messageSource}")
     private MessageSource messageSource;
-    public MessageSource getMessageSource() {
-        return messageSource;
-    }
-
-    public void setMessageSource(MessageSource messageSource) {
-        this.messageSource = messageSource;
-    }
-
 
     @Autowired
     private HelloService helloService;
@@ -42,9 +34,12 @@ public class UserVM {
         String msg = helloService.getHelloMsg(); //"header_good_day"
         String hello;
         if (getUserName() == null || getUserName().isEmpty())
-            hello = getMessageSource().getMessage(msg, null, Locale.getDefault());
+            hello = messageSource.getMessage(
+                msg,
+                null,
+                Locale.getDefault());
         else
-            hello = getMessageSource().getMessage(
+            hello = messageSource.getMessage(
                 msg+"_username",
                 new Object[] {getUserName()},
                 Locale.getDefault());
